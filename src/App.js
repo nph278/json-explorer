@@ -39,7 +39,7 @@ class App extends Component {
           <details>
             <summary
               entries={Object.keys(obj[key]).length}
-              isArr={Array.isArray(obj[key]).toString()}
+              isarr={Array.isArray(obj[key]).toString()}
             >
               {key}
             </summary>

@@ -25,15 +25,15 @@ summary:focus {
   outline: none;
 }
 
-summary[isArr="true"] {
+summary[isarr="true"] {
   color: yellow;
 }
 
-summary[isArr="true"]::marker {
+summary[isarr="true"]::marker {
   color: yellow;
 }
 
-summary[isArr="true"]::before {
+summary[isarr="true"]::before {
   content: "[] ";
 }
 
