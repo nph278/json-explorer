@@ -14,7 +14,7 @@ details {
 }
 
 summary {
-  cursor: default;
+  cursor: pointer;
 }
 
 summary::marker {
@@ -23,6 +23,7 @@ summary::marker {
 
 summary:focus {
   outline: none;
+  text-decoration: dashed underline;
 }
 
 summary[isarr="true"] {
