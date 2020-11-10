@@ -1,13 +1,31 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+details {
+  display: inline;
+}
+
+summary::marker {
+  color: blue;
+}
+
+textarea {
+  width: 50%;
+  height: 100px;
+}
+
+details:not([open=""]) [entries]:not([entries="0"]):not([entries="1"])::after {
+  content: " (" attr(entries) " entries)";
+  color: green;
+}
+
+details:not([open=""]) [entries="1"]::after {
+  content: " (1 entry)";
+  color: green;
+}
+
+details [entries="0"]::after {
+  content: " (empty)";
+  color: red;
 }
