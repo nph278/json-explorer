@@ -34,6 +34,7 @@ textarea {
   border: none;
   border-radius: 10px;
   padding: 10px;
+  overflow-y: scroll;
 }
 
 textarea:focus {
