@@ -23,7 +23,7 @@ summary::marker {
 
 summary:focus {
   outline: none;
-  text-decoration: dashed underline;
+  text-decoration: underline;
 }
 
 summary[isarr="true"] {
