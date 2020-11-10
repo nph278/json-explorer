@@ -5,6 +5,7 @@ class App extends Component {
     super(props);
     this.state = {
       json: {},
+      jsonStr: "",
       err:""
     }
     this.updateJson = this.updateJson.bind(this)
@@ -12,6 +13,9 @@ class App extends Component {
   }
   
   updateJson(event) {
+    this.setState({
+      jsonStr: event.target.value
+    })
     try {
       this.setState({
         json: JSON.parse(event.target.value),
@@ -25,9 +29,11 @@ class App extends Component {
     }
   }
 
-  objToHTML(obj, name) {
+  keyInt = 0
+
+  objToHTML(obj) {
     return Object.keys(obj).sort(key => typeof obj[key] === "object" ? 1 : -1).map(key => (
-      <span>&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
+      <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
         <details><summary entries={Object.keys(obj[key]).length}>{key}</summary>{this.objToHTML(obj[key], key)}</details> :
         <span>{key + ": " + JSON.stringify(obj[key])}</span>
       )}<br/></span>))
@@ -36,10 +42,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <textarea onChange={this.updateJson} placeholder="Paste or type JSON here" /><br />
+        <textarea
+          onChange={this.updateJson}
+          placeholder="Paste or type JSON here"
+          value={this.state.jsonStr}
+        /><br />
         <p style={{ color: this.state.err ? "red" : "green" }}>{this.state.err ? this.state.err : "Parse succesful"}</p>
         <div>
-          { this.objToHTML(this.state.json, "object") }
+          { this.objToHTML(this.state.json) }
         </div>
       </div>
     )
