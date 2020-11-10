@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <textarea onChange={this.updateJson} /><br />
+        <textarea onChange={this.updateJson} placeholder="Paste or type JSON here" /><br />
         <p style={{ color: this.state.err ? "red" : "green" }}>{this.state.err ? this.state.err : "Parse succesful"}</p>
         <div>
           { this.objToHTML(this.state.json, "object") }
