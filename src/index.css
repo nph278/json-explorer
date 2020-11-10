@@ -25,6 +25,14 @@ summary:focus {
   outline: none;
 }
 
+summary[isArr="true"] {
+  color: yellow;
+}
+
+summary[isArr="true"]::before {
+  content: "[] ";
+}
+
 textarea {
   box-sizing: border-box;
   width: 100%;
