@@ -1,5 +1,7 @@
-body {
+html {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: rgb(247, 247, 247);
+  background-color: rgb(31, 31, 31);
 }
 
 details {
@@ -13,6 +15,15 @@ summary::marker {
 textarea {
   width: 50%;
   height: 100px;
+  color: rgb(247, 247, 247);
+  background-color: rgb(19, 19, 19);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+textarea:focus {
+  outline: none;
 }
 
 textarea::placeholder {
@@ -31,5 +42,25 @@ details:not([open=""]) [entries="1"]::after {
 
 details [entries="0"]::after {
   content: " (empty)";
+  color: red;
+}
+
+span[typeof="number"] {
+  color: yellow;
+}
+
+span[typeof="object"] {
+  color: grey;
+}
+
+span[typeof="string"] {
+  color: blueviolet;
+}
+
+span[typeof="boolean"][val="true"] {
+  color: green;
+}
+
+span[typeof="boolean"][val="false"] {
   color: red;
 }

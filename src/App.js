@@ -35,7 +35,7 @@ class App extends Component {
     return Object.keys(obj).sort(key => typeof obj[key] === "object" ? 1 : -1).map(key => (
       <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
         <details><summary entries={Object.keys(obj[key]).length}>{key}</summary>{this.objToHTML(obj[key], key)}</details> :
-        <span>{key + ": " + JSON.stringify(obj[key])}</span>
+        <span>{key + ": "}<span typeof={typeof obj[key]} val={obj[key].toString()}>{JSON.stringify(obj[key])}</span></span>
       )}<br/></span>))
   }
 
@@ -46,6 +46,7 @@ class App extends Component {
           onChange={this.updateJson}
           placeholder="Paste or type JSON here"
           value={this.state.jsonStr}
+          spellCheck="false"
         /><br />
         <p style={{ color: this.state.err ? "red" : "green" }}>{this.state.err ? this.state.err : "Parse succesful"}</p>
         <div>
