@@ -5,6 +5,10 @@ html {
   background-color: rgb(31, 31, 31);
 }
 
+span::selection, summary::selection {
+  background-color: rgb(66, 66, 66);
+}
+
 details {
   display: inline;
 }

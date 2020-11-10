@@ -32,10 +32,27 @@ class App extends Component {
   keyInt = 0
 
   objToHTML(obj) {
-    return Object.keys(obj).sort(key => typeof obj[key] === "object" ? 1 : -1).map(key => (
-      <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
-        <details><summary entries={Object.keys(obj[key]).length}>{key}</summary>{this.objToHTML(obj[key], key)}</details> :
-        <span>{key + ": "}<span typeof={typeof obj[key]} val={obj[key] === null ? null : obj[key].toString()}>{JSON.stringify(obj[key])}</span></span>
+    return Object.keys(obj)
+      .sort((key1, key2) => typeof obj[key1] === typeof obj[key2] ? ( key1 > key2 ? 1 : -1 ) : (typeof obj[key1] === "object" ? 1 : -1))
+      .map(key => (
+        <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
+          <details>
+            <summary
+              entries={Object.keys(obj[key]).length}
+            >
+              {key}
+            </summary>
+            {this.objToHTML(obj[key], key)}
+          </details> :
+          <span>
+            {key + ": "}
+            <span
+              typeof={typeof obj[key]}
+              val={obj[key] === null ? null : obj[key].toString()}
+            >
+              {JSON.stringify(obj[key])}
+            </span>
+          </span>
       )}<br/></span>))
   }
 
