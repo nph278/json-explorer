@@ -8,12 +8,21 @@ details {
   display: inline;
 }
 
+summary {
+  cursor: default;
+}
+
 summary::marker {
   color: blue;
 }
 
+summary:focus {
+  outline: none;
+}
+
 textarea {
-  width: 50%;
+  box-sizing: border-box;
+  width: 100%;
   height: 100px;
   color: rgb(247, 247, 247);
   background-color: rgb(19, 19, 19);
