@@ -29,6 +29,10 @@ summary[isArr="true"] {
   color: yellow;
 }
 
+summary[isArr="true"]::marker {
+  color: yellow;
+}
+
 summary[isArr="true"]::before {
   content: "[] ";
 }
