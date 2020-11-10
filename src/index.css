@@ -52,6 +52,11 @@ textarea {
 
 textarea:focus {
   outline: none;
+  border: 2px solid white;
+}
+
+textarea:not(:focus) {
+  opacity: 50%;
 }
 
 textarea::placeholder {
