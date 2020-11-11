@@ -10,7 +10,7 @@ span::selection, summary::selection {
 }
 
 textarea {
-  font-family: 'Ubuntu Mono', monospace;
+  font-family: inherit;
   font-size: small;
   box-sizing: border-box;
   width: 100%;
@@ -55,6 +55,10 @@ summary[isarr="true"]::marker {
 
 summary[isarr="true"]::before {
   content: "[] ";
+}
+
+summary::after {
+  font-size: smaller;
 }
 
 details {
