@@ -65,6 +65,7 @@ class App extends Component {
           placeholder="Paste or type JSON here"
           value={this.state.jsonStr}
           spellCheck="false"
+          autoFocus="autofocus"
         /><br />
         <p style={{ color: this.state.err ? "red" : "green" }}>{this.state.err ? this.state.err : "Parse succesful"}</p>
         <div>
