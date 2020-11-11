@@ -5,8 +5,12 @@ html {
   background-color: rgb(31, 31, 31);
 }
 
-span::selection, br::selection, summary::selection, textarea::selection {
+span::selection, br::selection, summary::selection {
   background-color: rgb(66, 66, 66);
+}
+
+textarea::selection {
+  background-color: rgb(109, 109, 109);
 }
 
 textarea {
@@ -47,10 +51,6 @@ summary[isarr="true"] {
 
 summary[isarr="true"]::marker {
   color: yellow;
-}
-
-summary[isarr="true"]::before {
-  content: "[] ";
 }
 
 summary::after {
