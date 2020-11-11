@@ -23,10 +23,6 @@ textarea {
   transition: 0.1s;
 }
 
-textarea:not(:focus) {
-  opacity: 75%;
-}
-
 textarea:focus {
   outline: none;
   border-left: 3px solid white;
