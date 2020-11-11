@@ -26,6 +26,7 @@ textarea {
   padding: 10px;
   overflow-y: scroll;
   transition: 0.1s;
+  border-left: 0px solid white;
 }
 
 textarea:focus {
