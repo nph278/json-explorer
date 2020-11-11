@@ -63,12 +63,12 @@ textarea::placeholder {
   font-style: italic;
 }
 
-details:not([open=""]) [entries]:not([entries="0"]):not([entries="1"])::after {
+details:not([open]) [entries]:not([entries="0"]):not([entries="1"])::after {
   content: " (" attr(entries) " entries)";
   color: green;
 }
 
-details:not([open=""]) [entries="1"]::after {
+details:not([open]) [entries="1"]::after {
   content: " (1 entry)";
   color: green;
 }
