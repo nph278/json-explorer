@@ -24,7 +24,7 @@ textarea {
 }
 
 textarea:not(:focus) {
-  opacity: 50%;
+  opacity: 75%;
 }
 
 textarea:focus {
