@@ -33,7 +33,7 @@ class App extends Component {
 
   objToHTML(obj) {
     return Object.keys(obj)
-      .sort((key1, key2) => typeof obj[key1] === typeof obj[key2] ? ( key1 > key2 ? 1 : -1 ) : (typeof obj[key1] === "object" ? 1 : -1))
+      .sort((key1, key2) => ((typeof obj[key1] !== "object" && typeof obj[key2] !== "object") || (typeof obj[key1] === "object" && typeof obj[key2] === "object")) ? ( key1 > key2 ? 1 : -1 ) : (typeof obj[key1] === "object" ? 1 : -1))
       .map(key => (
         <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
           <details>
