@@ -1,79 +1,80 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      json: {},
-      jsonStr: "",
-      err:""
-    }
-    this.updateJson = this.updateJson.bind(this)
-    this.objToHTML = this.objToHTML.bind(this)
-  }
+export default function App(props) {
+  const [err, setErr] = useState("");
+  const [json, setJson] = useState({});
+  const [jsonStr, setJsonStr] = useState("");
   
-  updateJson(event) {
-    this.setState({
-      jsonStr: event.target.value
-    })
+  function updateJson(event) {
+    setJsonStr(event.target.value)
     try {
-      this.setState({
-        json: JSON.parse(event.target.value),
-        err:""
-      })
-    } catch (err) {
-      this.setState({
-        json: {},
-        err: String(err)
-      })
+      setJson(JSON.parse(event.target.value))
+      setErr("")
+    } catch (error) {
+      setJson({})
+      setErr(error.toString())
     }
   }
 
-  keyInt = 0
+  const sortJson = obj => (key1, key2) => (
+    (typeof obj[key1] !== "object" && typeof obj[key2] !== "object") ||
+    (typeof obj[key1] === "object" && typeof obj[key2] === "object")
+  ) ?
+    (key1 > key2 ? 1 : -1) :
+    (typeof obj[key1] === "object" ? 1 : -1)
 
-  objToHTML(obj) {
+  let keyInt = 0
+
+  function objToHTML(obj) {
     return Object.keys(obj)
-      .sort((key1, key2) => ((typeof obj[key1] !== "object" && typeof obj[key2] !== "object") || (typeof obj[key1] === "object" && typeof obj[key2] === "object")) ? ( key1 > key2 ? 1 : -1 ) : (typeof obj[key1] === "object" ? 1 : -1))
+      .sort(sortJson(obj))
       .map(key => (
-        <span key={++this.keyInt}>&nbsp;&nbsp;&nbsp;&nbsp;{((typeof obj[key] === "object" && obj[key] !== null) ?
-          <details>
-            <summary
-              entries={Object.keys(obj[key]).length}
-              isarr={Array.isArray(obj[key]).toString()}
-            >
-              {key}
-            </summary>
-            {this.objToHTML(obj[key], key)}
-          </details> :
-          <span>
-            {key + ": "}
-            <span
-              typeof={typeof obj[key]}
-              val={obj[key] === null ? null : obj[key].toString()}
-            >
-              {JSON.stringify(obj[key])}
-            </span>
-          </span>
-      )}<br/></span>))
+        <span key={++keyInt}>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          {
+            ((typeof obj[key] === "object" && obj[key] !== null) ?
+              <details>
+                <summary
+                  entries={Object.keys(obj[key]).length}
+                  isarr={Array.isArray(obj[key]).toString()}
+                >
+                  {key}
+                </summary>
+                {objToHTML(obj[key], key)}
+              </details> :
+              <span>
+                {key + ": "}
+                <span
+                  typeof={typeof obj[key]}
+                  val={obj[key] === null ? null : obj[key].toString()}
+                >
+                  {JSON.stringify(obj[key])}
+                </span>
+              </span>
+            )
+          }
+          <br />
+        </span>
+      ))
   }
-
-  render() {
-    return (
-      <div>
-        <textarea
-          onChange={this.updateJson}
-          placeholder="Paste or type JSON here"
-          value={this.state.jsonStr}
-          spellCheck="false"
-          autoFocus="autofocus"
-        /><br />
-        <p style={{ color: this.state.err ? "red" : "green" }}>{this.state.err ? this.state.err : "Parse succesful"}</p>
+    
+  return (
         <div>
-          { this.objToHTML(this.state.json) }
-        </div>
+          <textarea
+            onChange={updateJson}
+            placeholder="Paste or type JSON here"
+            value={jsonStr}
+            spellCheck="false"
+            autoFocus="autofocus"
+          /><br />
+          <p
+            style={{ color: err ? "red" : "green" }}
+          >
+            {err ? err : "Parse succesful"}
+          </p>
+          <div>
+            { objToHTML(json) }
+          </div>
       </div>
     )
-  }
 }
-
-export default App;
