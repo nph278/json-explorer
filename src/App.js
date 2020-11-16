@@ -1,19 +1,10 @@
 import React, { useState } from 'react'
 
 export default function App(props) {
-  const [err, setErr] = useState("");
-  const [json, setJson] = useState({});
-  const [jsonStr, setJsonStr] = useState("");
-  
+  const [json, setJson] = useState("");
+
   function updateJson(event) {
-    setJsonStr(event.target.value)
-    try {
-      setJson(JSON.parse(event.target.value))
-      setErr("")
-    } catch (error) {
-      setJson({})
-      setErr(error.toString())
-    }
+    setJson(event.target.value)
   }
 
   const sortJson = obj => (key1, key2) => (
@@ -57,24 +48,34 @@ export default function App(props) {
         </span>
       ))
   }
-    
+
+  let err
+  let parsed
+  try {
+    parsed = JSON.parse(json)
+  } catch (e) {
+    err = e.toString()
+    parsed = {}
+    console.log("err!")
+  }
+
   return (
-        <div>
-          <textarea
-            onChange={updateJson}
-            placeholder="Paste or type JSON here"
-            value={jsonStr}
-            spellCheck="false"
-            autoFocus="autofocus"
-          /><br />
-          <p
-            style={{ color: err ? "red" : "green" }}
-          >
-            {err ? err : "Parse succesful"}
-          </p>
-          <div>
-            { objToHTML(json) }
-          </div>
+    <div>
+      <textarea
+        onChange={updateJson}
+        placeholder="Paste or type JSON here"
+        value={json}
+        spellCheck="false"
+        autoFocus="autofocus"
+      /><br />
+      <p
+        style={{ color: err ? "red" : "green" }}
+      >
+        {err ? err : "Parse succesful"}
+      </p>
+      <div>
+        {objToHTML(parsed)}
       </div>
-    )
+    </div>
+  )
 }
