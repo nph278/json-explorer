@@ -33,7 +33,6 @@ export default function App(props) {
             {typeof obj[key] === "object" && obj[key] !== null ? (
               <Fold
                 entries={Object.keys(obj[key]).length}
-                isarr={Array.isArray(obj[key]).toString()}
                 name={key}
                 indent={indent}
                 array={Array.isArray(obj[key])}

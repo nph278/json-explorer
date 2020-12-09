@@ -17,7 +17,10 @@ const Fold = (props) => {
         <Indent deep={props.indent} />
         <span style={{ color: "blue" }}>{open ? "v" : ">"}</span>{" "}
         <span style={{ color: props.array ? "yellow" : "white" }}>
-          {props.name}
+          <span style={{ color: props.entries ? "green" : "red" }}>
+            [{props.entries}]
+          </span>
+          {" " + props.name}
         </span>
       </FoldStyle>
       <br />
