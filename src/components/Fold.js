@@ -8,7 +8,7 @@ const Fold = (props) => {
     <>
       <div className="fold" onClick={() => setOpen(!open)}>
         <Indent deep={props.indent} />
-        <span style={{ color: "blue" }}>{open ? "V" : ">"}</span>{" "}
+        <span style={{ color: "blue" }}>{open ? "v" : ">"}</span>{" "}
         <span style={{ color: props.array ? "yellow" : "white" }}>
           {props.name}
         </span>
