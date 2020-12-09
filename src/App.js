@@ -5,6 +5,7 @@ import InputBox from "./components/InputBox";
 
 export default function App(props) {
   const [json, setJson] = useState("");
+  const [url, setUrl] = useState("");
 
   function updateJson(event) {
     setJson(event.target.value);
@@ -58,10 +59,36 @@ export default function App(props) {
 
   return (
     <div>
+      File:{" "}
       <input
         type="file"
         onChange={(e) => e.target.files?.item(0).text().then(setJson)}
       />
+      <br />
+      URL:{" "}
+      <input
+        type="url"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+        style={{
+          backgroundColor: "gray",
+          border: "none",
+          marginRight: "3px",
+        }}
+      />
+      <button
+        onClick={() =>
+          fetch(url)
+            .then((a) => a.text())
+            .then(setJson)
+        }
+        style={{
+          backgroundColor: "gray",
+          border: "black",
+        }}
+      >
+        Get
+      </button>
       <InputBox
         onChange={updateJson}
         placeholder="Paste or type JSON here"
