@@ -3,6 +3,10 @@ import Fold from "./components/Fold";
 import Pair from "./components/Pair";
 import InputBox from "./components/InputBox";
 
+const isObject = (obj) => {
+  return typeof obj === "object" && obj !== null;
+};
+
 export default function App(props) {
   const [json, setJson] = useState("");
   const [url, setUrl] = useState("");
@@ -12,8 +16,8 @@ export default function App(props) {
   }
 
   const sortJson = (obj) => (key1, key2) =>
-    (typeof obj[key1] !== "object" && typeof obj[key2] !== "object") ||
-    (typeof obj[key1] === "object" && typeof obj[key2] === "object")
+    (!isObject(obj[key1]) && isObject(obj[key1])) ||
+    (isObject(obj[key1]) && !isObject(obj[key1]))
       ? key1 > key2
         ? 1
         : -1
