@@ -21,9 +21,7 @@ const Fold = (props) => {
         </span>
       </FoldStyle>
       <br />
-      <div className="rest" style={{ display: open ? "inline" : "none" }}>
-        {props.children}
-      </div>
+      <div style={{ display: open ? "inline" : "none" }}>{props.children}</div>
     </>
   );
 };
