@@ -5,7 +5,7 @@ const repeatNbsp = (n) => {
 };
 
 const Indent = (props) => {
-  return <>{repeatNbsp(props.deep)}</>;
+  return <span style={{ userSelect: "none" }}>{repeatNbsp(props.deep)}</span>;
 };
 
 export default Indent;
