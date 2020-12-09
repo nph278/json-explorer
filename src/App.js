@@ -15,8 +15,7 @@ export default function App(props) {
     setJson(event.target.value);
   }
 
-  const sortJson = (obj) => (key1, key2) =>
-    typeof isObject(obj[key1]) ? -1 : 1;
+  const sortJson = (obj) => (key1, key2) => (isObject(obj[key1]) ? 1 : -1);
 
   let keyInt = 0;
 
