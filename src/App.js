@@ -16,14 +16,7 @@ export default function App(props) {
   }
 
   const sortJson = (obj) => (key1, key2) =>
-    (!isObject(obj[key1]) && !isObject(obj[key2])) ||
-    (isObject(obj[key1]) && isObject(obj[key2]))
-      ? key1 > key2
-        ? 1
-        : -1
-      : typeof obj[key1] === "object"
-      ? 1
-      : -1;
+    typeof isObject(obj[key1]) ? -1 : 1;
 
   let keyInt = 0;
 
