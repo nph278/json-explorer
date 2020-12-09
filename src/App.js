@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Fold from "./components/Fold";
+import Pair from "./components/Pair";
 
 export default function App(props) {
   const [json, setJson] = useState("");
@@ -19,34 +21,24 @@ export default function App(props) {
 
   let keyInt = 0;
 
-  function objToHTML(obj) {
+  function objToHTML(obj, indent) {
     return Object.keys(obj)
       .sort(sortJson(obj))
       .map((key) => (
         <span key={++keyInt}>
-          &nbsp;&nbsp;&nbsp;&nbsp;
           {typeof obj[key] === "object" && obj[key] !== null ? (
-            <details>
-              <summary
-                entries={Object.keys(obj[key]).length}
-                isarr={Array.isArray(obj[key]).toString()}
-              >
-                {key}
-              </summary>
-              {objToHTML(obj[key], key)}
-            </details>
+            <Fold
+              entries={Object.keys(obj[key]).length}
+              isarr={Array.isArray(obj[key]).toString()}
+              name={key}
+              indent={indent}
+              array={Array.isArray(obj[key])}
+            >
+              {objToHTML(obj[key], indent + 1)}
+            </Fold>
           ) : (
-            <span>
-              {key + ": "}
-              <span
-                typeof={typeof obj[key]}
-                val={obj[key] === null ? null : obj[key].toString()}
-              >
-                {JSON.stringify(obj[key])}
-              </span>
-            </span>
+            <Pair name={key} value={obj[key]} indent={indent} />
           )}
-          <br />
         </span>
       ));
   }
@@ -77,7 +69,7 @@ export default function App(props) {
       <p style={{ color: err ? "red" : "green" }}>
         {err ? err : "Parse succesful"}
       </p>
-      <div>{objToHTML(parsed)}</div>
+      <div>{objToHTML(parsed, 0)}</div>
     </div>
   );
 }
