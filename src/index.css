@@ -8,3 +8,7 @@ html {
 *::selection {
   background-color: rgb(66, 66, 66);
 }
+
+br {
+  user-select: none;
+}
