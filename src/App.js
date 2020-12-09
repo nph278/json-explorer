@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Fold from "./components/Fold";
 import Pair from "./components/Pair";
+import InputBox from "./components/InputBox";
 
 export default function App(props) {
   const [json, setJson] = useState("");
@@ -61,7 +62,7 @@ export default function App(props) {
         type="file"
         onChange={(e) => e.target.files?.item(0).text().then(setJson)}
       />
-      <textarea
+      <InputBox
         onChange={updateJson}
         placeholder="Paste or type JSON here"
         value={json}

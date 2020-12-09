@@ -8,34 +8,3 @@ html {
 *::selection {
   background-color: rgb(66, 66, 66);
 }
-
-textarea::selection {
-  background-color: rgb(190, 190, 190);
-  color: black;
-}
-
-textarea {
-  font-family: inherit;
-  font-size: small;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100px;
-  color: rgb(247, 247, 247);
-  background-color: rgb(19, 19, 19);
-  border: none;
-  padding: 10px;
-  overflow-y: scroll;
-  transition: 0.1s;
-  border-left: 0px solid white;
-}
-
-textarea:focus {
-  outline: none;
-  border-left: 3px solid white;
-}
-
-.fold {
-  display: inline;
-  cursor: pointer;
-  user-select: none;
-}
