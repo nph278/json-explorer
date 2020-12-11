@@ -19,7 +19,7 @@ const sortJson = (obj) => (key1, key2) =>
 
 const App = () => {
   const [json, setJson] = useState("");
-  const [url, setUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   function updateJson(event) {
     setJson(event.target.value);
@@ -62,36 +62,48 @@ const App = () => {
 
   return (
     <div>
-      File:{" "}
-      <input
-        type="file"
-        onChange={(e) => e.target.files?.item(0).text().then(setJson)}
-      />
-      <br />
-      URL:{" "}
-      <input
-        type="url"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
+      <label
+        htmlFor="upload-file"
         style={{
-          backgroundColor: "gray",
-          border: "none",
-          marginRight: "3px",
-        }}
-      />
-      <button
-        onClick={() =>
-          fetch(url)
-            .then((a) => a.text())
-            .then(setJson)
-        }
-        style={{
-          backgroundColor: "gray",
-          border: "black",
+          cursor: "pointer",
+          padding: "0 5px",
+          userSelect: "none",
         }}
       >
-        Get
-      </button>
+        {">"} From file
+      </label>
+      <input
+        type="file"
+        onChange={(e) => {
+          setIsLoading(true);
+          e.target.files
+            ?.item(0)
+            .text()
+            .then(setJson)
+            .then(() => setIsLoading(false));
+        }}
+        style={{ opacity: 0, position: "absolute", zIndex: -1 }}
+        id="upload-file"
+      />
+      <br />
+      <span
+        onClick={() => {
+          setIsLoading(true);
+          fetch(prompt("Enter URL:"))
+            .then((a) => a.text())
+            .then(setJson)
+            .then(() => setIsLoading(false));
+        }}
+        style={{
+          cursor: "pointer",
+          padding: "0 5px",
+          userSelect: "none",
+        }}
+      >
+        {">"} From link
+      </span>
+      <br />
+      <br />
       <InputBox
         onChange={updateJson}
         placeholder="Paste or type JSON here"
@@ -101,7 +113,7 @@ const App = () => {
       />
       <br />
       <p style={{ color: err ? "red" : "green" }}>
-        {err ? err : "Parse succesful"}
+        {isLoading ? "Loading..." : err ? err : "Parse succesful"}
       </p>
       <div>{objToHTML(parsed, 0)}</div>
     </div>
