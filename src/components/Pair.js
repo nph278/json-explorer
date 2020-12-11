@@ -1,5 +1,14 @@
 import React from "react";
 import Indent from "./Indent";
+import styled from "styled-components";
+
+const SelectAll = styled.span`
+  user-select: all;
+`;
+
+const SelectNone = styled.span`
+  user-select: none;
+`;
 
 const typeColors = {
   number: "yellow",
@@ -12,8 +21,9 @@ const Fold = (props) => {
   return (
     <>
       <Indent deep={props.indent} />
-      {props.name}:{" "}
-      <span
+      <SelectAll>{props.name}</SelectAll>
+      <SelectNone>: </SelectNone>
+      <SelectAll
         style={{
           color:
             typeof props.value === "boolean"
@@ -22,7 +32,7 @@ const Fold = (props) => {
         }}
       >
         {JSON.stringify(props.value)}
-      </span>
+      </SelectAll>
       <br />
     </>
   );
