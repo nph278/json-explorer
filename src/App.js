@@ -88,11 +88,14 @@ const App = () => {
       <br />
       <span
         onClick={() => {
+          const URL = prompt("Enter URL:");
           setIsLoading(true);
-          fetch(prompt("Enter URL:"))
-            .then((a) => a.text())
-            .then(setJson)
-            .then(() => setIsLoading(false));
+          URL
+            ? fetch(URL)
+                .then((a) => a.text())
+                .then(setJson)
+                .then(() => setIsLoading(false))
+            : setIsLoading(false);
         }}
         style={{
           cursor: "pointer",
