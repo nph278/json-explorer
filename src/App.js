@@ -7,15 +7,23 @@ const isObject = (obj) => {
   return typeof obj === "object" && obj !== null;
 };
 
-export default function App(props) {
+const sortJson = (obj) => (key1, key2) =>
+  (!isObject(obj[key1]) && !isObject(obj[key2])) ||
+  (isObject(obj[key1]) && isObject(obj[key2]))
+    ? key1 > key2
+      ? 1
+      : -1
+    : isObject(obj[key1])
+    ? 1
+    : -1;
+
+const App = () => {
   const [json, setJson] = useState("");
   const [url, setUrl] = useState("");
 
   function updateJson(event) {
     setJson(event.target.value);
   }
-
-  const sortJson = (obj) => (key1, key2) => (isObject(obj[key1]) ? 1 : -1);
 
   let keyInt = 0;
 
@@ -98,4 +106,6 @@ export default function App(props) {
       <div>{objToHTML(parsed, 0)}</div>
     </div>
   );
-}
+};
+
+export default App;
