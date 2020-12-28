@@ -17,7 +17,7 @@ const typeColors = {
   boolean: "blue",
 };
 
-const Fold = (props) => {
+const Pair = (props) => {
   return (
     <>
       <Indent deep={props.indent} />
@@ -38,4 +38,4 @@ const Fold = (props) => {
   );
 };
 
-export default Fold;
+export default Pair;
