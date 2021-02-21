@@ -1,1 +1,1 @@
-# [json-explorer](https://nph278.github.io/json-explorer/)
+# [json-explorer](https://nph-json-explorer.netlify.app)
